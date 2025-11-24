@@ -1,5 +1,6 @@
 package com.tech.spring.rest.restfulwebservice.exception;
 
+import com.tech.spring.rest.restfulwebservice.jackson.exception.StudentNotFoundException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
@@ -30,6 +31,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		ExceptionResponse response = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity(response,HttpStatus.NOT_FOUND);
 	}
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public final ResponseEntity<Object> handleStudentNotFoundExceptions(StudentNotFoundException ex, WebRequest request){
+        ExceptionResponse response = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(true));
+        return new ResponseEntity(response,HttpStatus.NOT_FOUND);
+    }
 	
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(
 		MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

@@ -1,26 +1,17 @@
 package com.tech.spring.rest.restfulwebservice.helloworld;
 
+import jdk.jfr.DataAmount;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class HelloWorldBean {
 
 	private String message;
 
-	public HelloWorldBean(String message) {
-		super();
-		this.message = message;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	@Override
-	public String toString() {
-		return "HelloWorldBean [message=" + message + "]";
-	}
-	
-	
 }

@@ -1,13 +1,15 @@
 package com.tech.spring.rest.restfulwebservice.user;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+
 
 public class User {
 
-	@Size(min=3,message="Name should have minimum of 3 characters") //all the validations are present in java validation api inside javax. 
+	@Size(min=3,message="Name should have minimum of 3 characters") //all the validations are present in java validation api inside javax.
 	private String name;
 	private Integer id;
 	@Past(message="Birth date should be future date")
