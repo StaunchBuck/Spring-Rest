@@ -28,23 +28,22 @@ public class StudentServiceImpl implements StudentService {
     StudentEntity st3 = new StudentEntity(3L, "Alice Johnson", "alice.johnson@test.com", 24,List.of(d4,d1));
 
 
-//    private final StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     private final StudentMapper studentMapper;
 
     @Override
     public StudentDto getStudentById(long id) {
-        StudentEntity studentEntity = Stream.of(st1,st2,st3)
-                .filter(student -> student.getId() == id)
-                .findFirst()
+
+        StudentEntity studentEntity = studentRepository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
         return studentMapper.toDto(studentEntity);
     }
 
     @Override
     public List<StudentDto> getAllStudents() {
-        List<StudentEntity> students = List.of(st1,st2,st3);
-        return studentMapper.toDtos(students);
+        List<StudentEntity> entities = studentRepository.findAll();
+        return studentMapper.toDtos(entities);
     }
 
     @Override

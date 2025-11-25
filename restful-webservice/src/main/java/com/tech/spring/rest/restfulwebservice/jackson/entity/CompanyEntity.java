@@ -1,0 +1,23 @@
+package com.tech.spring.rest.restfulwebservice.jackson.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Entity
+@Data
+@AllArgsConstructor
+public class CompanyEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) //generationType AUTO is optional, by default it is AUTO
+    private Integer id;
+    private String name;
+    private String address;
+    private String phone;
+
+    @Embedded
+    private ContactPersonEntity contactPerson;
+
+    // standard getters, setters
+}
