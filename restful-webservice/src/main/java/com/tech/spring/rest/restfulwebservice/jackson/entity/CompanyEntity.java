@@ -7,6 +7,9 @@ import lombok.Data;
 @Entity
 @Data
 @AllArgsConstructor
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"phone","departmentName"}) // composite unique constraint
+})
 public class CompanyEntity {
 
     @Id
@@ -14,8 +17,9 @@ public class CompanyEntity {
     private Integer id;
     private String name;
     private String address;
+    @Column(unique=true)
     private String phone;
-
+    private String departmentName;
     @Embedded
     private ContactPersonEntity contactPerson;
 

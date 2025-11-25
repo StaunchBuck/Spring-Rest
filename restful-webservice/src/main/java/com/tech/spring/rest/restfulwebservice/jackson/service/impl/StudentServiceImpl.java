@@ -48,7 +48,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto createStudent(StudentDto student) {
-        return null;
+        StudentEntity studentEntity = studentMapper.toEntity(student);
+        StudentEntity savedEntity = studentRepository.save(studentEntity);
+        return studentMapper.toDto(savedEntity);
     }
 
     @Override

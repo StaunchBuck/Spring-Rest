@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import java.util.List;
 
@@ -13,10 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "student")
+@Audited
 public class StudentEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,  generator = "student_seq")
     private Long id;
     @Basic(optional = false, fetch = FetchType.LAZY) // makes column not null in db and lazy loading
     private String name;
@@ -25,5 +28,6 @@ public class StudentEntity {
     @Column
     private Integer age;
     @Transient //if you want to ignore this field from db
+    @NotAudited
     private List<DepartmentEntity> departments;
 }

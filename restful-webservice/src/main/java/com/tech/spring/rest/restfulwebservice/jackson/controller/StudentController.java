@@ -34,6 +34,7 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<StudentDto> upsertStudent(@RequestBody StudentDto studentDto){
+        System.out.println("Student DTO Received: " + studentDto);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(studentService.createStudent(studentDto));
